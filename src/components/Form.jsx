@@ -1,6 +1,13 @@
 
 import { useState } from "react";
+import {
+  Link ,useNavigate,useParams
+} from "react-router-dom";
 const Form  = (props)=>{
+  const navigate = useNavigate();
+  const { test,firstColor,secondColor } = useParams();
+    
+
   const {list , setList,setUserForm} = props;
     const createUser = (e) => {
         // we must prevent the default refresh of the browser to keep our state from being reset
@@ -15,7 +22,9 @@ const Form  = (props)=>{
         setUserForm(newUser)
 
         setList([...list,newUser])
+        navigate("/userList");
         console.log("Welcome", newUser);
+        console.log("UserList", list);
     };
 
     const [username, setUsername] = useState("");
@@ -23,8 +32,11 @@ const Form  = (props)=>{
     const [password, setPassword] = useState(""); 
     return(
        <div className="col-sm-6">
+         <Link to={"/"}>Go to Pokemon List </Link>
     <form class="row g-3" onSubmit={ createUser }>
   <div class="col-md-6">
+    {test =="home"? <h2> Welcome {test} </h2>:  isNaN(test) ? <h2 style={{backgroundColor:firstColor, color:secondColor}}> the word is {test} </h2> :  <h2> the number is {test} </h2>}
+    
     <label for="inputEmail4" class="form-label">Email</label>
     <input type="text" class="form-control" id="inputEmail4"  onChange={ (e) => setEmail(e.target.value) }></input>
   </div>

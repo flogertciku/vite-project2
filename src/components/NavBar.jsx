@@ -1,5 +1,16 @@
+import {
+  Link ,useNavigate
+} from "react-router-dom";
+
 const NavBar =(props)=>{
+  const navigate = useNavigate();
     const {pageNumber,pageTitle} = props
+    const handleClick =()=>{
+      navigate("/userList")
+    }
+    const handleClick2 =()=>{
+      navigate("/form")
+    }
     
     
 
@@ -13,11 +24,13 @@ const NavBar =(props)=>{
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">{pageTitle}</a>
+        <li  onClick={handleClick2} class="nav-item">
+          {/* <a >{pageTitle}</a> */}
+          <a>Form </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+        <li onClick={handleClick} class="nav-item">
+          {/* <a  href="#">Features</a> */}
+          <button class="nav-link" > User List</button>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Pricing</a>

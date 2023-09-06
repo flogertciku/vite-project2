@@ -4,19 +4,32 @@ import Form from './components/Form'
 import List from './components/List'
 import Details from './components/Details'
 import LearningApi from './components/LearningApi'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 function App() {
   const [list, setList] = useState([])
   const [userForm,setUserForm] = useState({})
 
   return (
     <div className='row'>
-    {/* <NavBar pageNumber= {4} pageTitle= "HomePAge"></NavBar>
-    <Form  list = {list} setList= {setList} setUserForm= {setUserForm}></Form>
-    <List list= {list}></List>
-    <Details userName ={ userForm.username} email={userForm.email} password= {userForm.password}></Details>
-    */}
-  <LearningApi></LearningApi>
-
+    
+    <BrowserRouter>
+      <NavBar></NavBar>
+    
+      <Routes>
+      <Route path="/form/" element={<Form list={list} setList ={setList} setUserForm ={setUserForm}/>} />
+        <Route path="/form/:test" element={<Form list={list} setList ={setList} setUserForm ={setUserForm}/>} />
+        <Route path="/form/:test/:firstColor/:secondColor" element={<Form list={list} setList ={setList} setUserForm ={setUserForm}/>} />
+        <Route path="/form/:test/:firstColor/:secondColor" element={<Form list={list} setList ={setList} setUserForm ={setUserForm}/>} />
+        <Route exact path="/" element={<LearningApi />} />
+        <Route exact path="/pokemon/:pokemonName" element={<LearningApi />} />
+        <Route exact path="/userList" element={<List list={list} />} />
+      </Routes>
+    </BrowserRouter>
 
     </div>
   )
